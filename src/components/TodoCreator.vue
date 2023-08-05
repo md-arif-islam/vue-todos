@@ -27,7 +27,7 @@ const createTodo = () => {
     <input type="text" v-model="todoState.todo" />
     <button @click="createTodo()">Create</button>
   </div>
-  <p class="err-msg">{{ todoState.errMsg }}</p>
+  <p v-if="todoState.invalid" class="err-msg">{{ todoState.errMsg }}</p>
 </template>
 
 <style lang="scss" scoped>
