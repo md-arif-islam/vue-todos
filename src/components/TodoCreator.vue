@@ -23,18 +23,21 @@ const createTodo = () => {
 </script>
 
 <template>
-  <div class="input-wrap">
+  <div class="input-wrap" :class="{ 'input-err': todoState.invalid }">
     <input type="text" v-model="todoState.todo" />
     <button @click="createTodo()">Create</button>
   </div>
   <p v-if="todoState.invalid" class="err-msg">{{ todoState.errMsg }}</p>
 </template>
-
 <style lang="scss" scoped>
 .input-wrap {
   display: flex;
   transition: 250ms ease;
   border: 2px solid #41b080;
+
+  &.input-err {
+    border-color: red;
+  }
 
   &:focus-within {
     box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1),
@@ -55,5 +58,12 @@ const createTodo = () => {
     padding: 8px 16px;
     border: none;
   }
+}
+
+.err-msg {
+  margin-top: 6px;
+  font-size: 12px;
+  text-align: center;
+  color: red;
 }
 </style>
