@@ -1,7 +1,7 @@
 <script setup></script>
 
 <template>
-  <button @click="createTodo()">
+  <button>
     <slot></slot>
   </button>
 </template>
