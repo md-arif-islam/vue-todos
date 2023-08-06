@@ -17,12 +17,14 @@ const props = defineProps({
     </div>
     <div class="todo-actions">
       <Icon
+        v-if="todo.isEditing"
         icon="ph:check-circle"
         class="icon check-icon"
         color="41b080"
         width="22"
       />
       <Icon
+        v-else
         icon="ph:pencil-fill"
         class="icon edit-icon"
         color="41b080"
