@@ -12,7 +12,7 @@ const props = defineProps({
   },
 });
 
-defineEmits("toggle-complete");
+defineEmits(["toggle-complete"]);
 </script>
 
 <template>
@@ -24,7 +24,9 @@ defineEmits("toggle-complete");
     />
     <div class="todo">
       <input v-if="todo.isEditing" type="text" :value="todo.todo" />
-      <span v-else>{{ todo.todo }}</span>
+      <span v-else :class="{ 'completed-todo': todo.isCompleted }">{{
+        todo.todo
+      }}</span>
     </div>
     <div class="todo-actions">
       <Icon
@@ -45,7 +47,6 @@ defineEmits("toggle-complete");
     </div>
   </li>
 </template>
-
 <style lang="scss" scoped>
 li {
   display: flex;
@@ -77,6 +78,10 @@ li {
 
   .todo {
     flex: 1;
+
+    .completed-todo {
+      text-decoration: line-through;
+    }
 
     input[type="text"] {
       width: 100%;
