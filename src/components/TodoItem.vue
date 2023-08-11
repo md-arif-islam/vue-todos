@@ -12,7 +12,7 @@ const props = defineProps({
   },
 });
 
-defineEmits(["toggle-complete", "edit-todo", "update-todo"]);
+defineEmits(["toggle-complete", "edit-todo", "update-todo", "delete-todo"]);
 </script>
 
 <template>
@@ -50,7 +50,13 @@ defineEmits(["toggle-complete", "edit-todo", "update-todo"]);
         width="22"
         @click="$emit('edit-todo', index)"
       />
-      <Icon icon="ph:trash" class="icon trash-icon" color="f95e5e" width="22" />
+      <Icon
+        icon="ph:trash"
+        class="icon trash-icon"
+        color="f95e5e"
+        width="22"
+        @click="$emit('delete-todo', todo.id)"
+      />
     </div>
   </li>
 </template>
