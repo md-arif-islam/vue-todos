@@ -3,14 +3,25 @@ import { Icon } from "@iconify/vue";
 const props = defineProps({
   todo: {
     type: Object,
-    default: () => {},
+    default: true,
+  },
+
+  index: {
+    type: Number,
+    default: true,
   },
 });
+
+defineEmits("toggle-complete");
 </script>
 
 <template>
   <li>
-    <input type="checkbox" :checked="todo.isCompleted" />
+    <input
+      type="checkbox"
+      :checked="todo.isCompleted"
+      @input="$emit('toggle-complete', index)"
+    />
     <div class="todo">
       <input v-if="todo.isEditing" type="text" :value="todo.todo" />
       <span v-else>{{ todo.todo }}</span>

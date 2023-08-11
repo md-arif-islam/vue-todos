@@ -3,6 +3,7 @@ import { uid } from "uid";
 import { ref } from "vue";
 import TodoCreator from "../components/TodoCreator.vue";
 import TodoItem from "../components/TodoItem.vue";
+import { Icon } from "@iconify/vue";
 
 const todoList = ref([]);
 const createTodo = (todo) => {
@@ -13,6 +14,10 @@ const createTodo = (todo) => {
     isEditing: null,
   });
 };
+
+const toggleTodoComplete = (todoPos) => {
+  todoList.value[todoPos].isCompleted = !todoList.value[todoPos].isCompleted;
+};
 </script>
 
 <template>
@@ -22,7 +27,12 @@ const createTodo = (todo) => {
       <template #button-content>Create</template>
     </TodoCreator>
     <ul class="todo-list" v-if="todoList.length > 0">
-      <TodoItem v-for="todo in todoList" :todo="todo" />
+      <TodoItem
+        v-for="(todo, index) in todoList"
+        :todo="todo"
+        :index="index"
+        @toggle-complete="toggleTodoComplete"
+      />
     </ul>
     <p v-else class="todos-msg">
       <Icon icon="noto-v1:sad-but-relieved-face" />
